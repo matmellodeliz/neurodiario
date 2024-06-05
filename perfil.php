@@ -83,7 +83,7 @@ $nome = $nome[0];
 
                 </div>
                 <div class="row">
-                    <a href="#" class="button">
+                    <a href="informacoes.php" class="button">
                         <i class="fa-solid fa-laptop-medical fa-xl mr-4 col-sm-6" style="color: #525252; float:left; padding:10px 0 10px 8px"></i>
                         <span>Informações</span>
                     </a>
