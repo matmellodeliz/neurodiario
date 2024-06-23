@@ -19,7 +19,7 @@ include '../connect_db.php';
 
   <div id="container">
     <div style="padding-bottom: 5px;">
-      <a href="../perfil.php" class="btn btn-secondary d-inline float-right" style="width: 75px;cursor: pointer;box-shadow: 0px 0px 2px gray;border: none;outline: none;padding: 5px;border-radius: 5px;"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+      <a href="../perfil.php" class="btn btn-secondary d-inline float-right" style="width: 75px;cursor: pointer;box-shadow: 0px 0px 2px gray;border: none;outline: none;padding: 5px;border-radius: 5px;text-decoration:none"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
     </div>
     <div id="header">
       <div id="monthDisplay" style="color: black;"></div>
