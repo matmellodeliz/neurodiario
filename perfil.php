@@ -72,7 +72,7 @@ $nome = $nome[0];
                 <div class="row" style="padding-bottom: 1px;">
                     <a href="calendario/calendario.php" class="button">
                         <i class="fa-solid fa-book fa-xl mr-4 col-sm-6" style="color: #525252; float:left; padding:10px 0 0 10px"></i>
-                        <span>Jornal</span>
+                        <span>Diário</span>
                     </a>
                 </div>
                 <div class="row" style="padding-bottom: 1px;">

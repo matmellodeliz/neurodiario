@@ -60,7 +60,7 @@ $nome = $nome[0];
         <div style="padding: 15px 15px 5px 0;float:right">
       <a href="perfil.php" class="btn btn-secondary d-inline float-right" style="width: 75px;cursor: pointer;box-shadow: 0px 0px 2px gray;border: none;outline: none;padding: 5px;border-radius: 5px;font-size:16px"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
     </div>
-        <iframe src="https://feed.mikle.com/widget/v2/167024/?preloader-text=Carregando&" height="500px" width="95%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
+    <iframe src="https://feed.mikle.com/widget/v2/167023/?preloader-text=Carregando...&" height="402px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
         <!-- <iframe src="https://feed.mikle.com/widget/v2/167024/?preloader-text=Carregando&" height="148px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe> -->
         <!-- <iframe src="https://feed.mikle.com/widget/v2/167024/?preloader-text=Carregando&" style="border-radius: 10px;" height="472px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe> -->
         </div>
