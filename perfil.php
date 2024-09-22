@@ -9,14 +9,16 @@ $nome = $nome[0];
 <title>Perfil</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
+<title>Perfil</title>
 <style>
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         max-width: 500px;
-        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
         font-family: arial;
-        margin-top: 10%;
+        margin-top: 15%;
         background-color: white;
         border-radius: 5px;
     }
@@ -56,8 +58,8 @@ $nome = $nome[0];
 
     <div class="col-sm-6">
         <div class="card">
-            <img src="<?= $_SESSION['avatar'] ?>" style="border-radius: 50%; min-height:150px; max-height:150px; max-width:150px; min-width: 150px; background-color: white; padding: 6px;">
-            <br>
+        <img src="<?= $_SESSION['avatar'] ?>" id="profilePreview" style="border-radius: 50%; min-height:150px; max-height:150px; max-width:150px; min-width: 150px; margin-top:-15%; background-color: white; padding: 6px;">
+        <br>
             <table style="height: 70px; width:100%">
                 <tbody>
                     <tr>

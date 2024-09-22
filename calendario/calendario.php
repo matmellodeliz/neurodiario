@@ -10,6 +10,7 @@ include '../connect_db.php';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Calendário de eventos</title>
 
   <link rel="stylesheet" href="style.css">
@@ -52,7 +53,7 @@ include '../connect_db.php';
   </div>
 
   <div id="deleteEventModal">
-    <h2>Event</h2>
+    <h2>Evento</h2>
 
     <p id="eventText"></p>
 
