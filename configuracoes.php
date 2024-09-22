@@ -7,9 +7,13 @@ include 'connect_db.php';
 <title>Perfil</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Configurações</title>
+
 <style>
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 100%;
         max-width: 500px;
         margin: auto;
         text-align: center;

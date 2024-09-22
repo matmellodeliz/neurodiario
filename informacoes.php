@@ -8,7 +8,7 @@ $nome = $nome[0];
 <title>Informações</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   @keyframes tonext {
     75% {
@@ -65,7 +65,6 @@ $nome = $nome[0];
   }
 
   body {
-
     max-width: 50%;
     max-height: 800px;
     margin: 0 auto;
@@ -110,7 +109,6 @@ $nome = $nome[0];
     filter: drop-shadow(0 0 10px #0003);
     perspective: 100px;
   }
-
   .carousel__viewport {
     position: absolute;
     top: 0;
@@ -130,9 +128,6 @@ $nome = $nome[0];
     width: 100%;
     counter-increment: item;
   }
-
-
-
   .carousel__slide:before {
     position: absolute;
     top: 50%;
@@ -141,7 +136,6 @@ $nome = $nome[0];
     color: #fff;
     font-size: 2em;
   }
-
   .carousel__snapper {
     position: absolute;
     top: 0;
@@ -150,12 +144,10 @@ $nome = $nome[0];
     height: 100%;
     scroll-snap-align: center;
   }
-
   @media (hover: hover) {
     .carousel__snapper {
       animation-name: tonext, snap;
       animation-timing-function: ease;
-      animation-duration: 4s;
       animation-iteration-count: infinite;
     }
 
@@ -163,18 +155,15 @@ $nome = $nome[0];
       animation-name: tostart, snap;
     }
   }
-
   @media (prefers-reduced-motion: reduce) {
     .carousel__snapper {
       animation-name: none;
     }
   }
-
   .carousel:hover .carousel__snapper,
   .carousel:focus-within .carousel__snapper {
     animation-name: none;
   }
-
   .carousel__navigation {
     position: absolute;
     right: 0;
@@ -182,12 +171,10 @@ $nome = $nome[0];
     left: 0;
     text-align: center;
   }
-
   .carousel__navigation-list,
   .carousel__navigation-item {
     display: inline-block;
   }
-
   .carousel__navigation-button {
     display: inline-block;
     width: 2rem;
@@ -197,8 +184,8 @@ $nome = $nome[0];
     border: 0.25rem solid transparent;
     border-radius: 50%;
     transition: transform 0.1s;
+    font-size: 19px;
   }
-
   .carousel::before,
   .carousel::after,
   .carousel__prev,
@@ -209,21 +196,17 @@ $nome = $nome[0];
     width: 4rem;
     height: 4rem;
     transform: translateY(-50%);
-    border-radius: 50%;
     font-size: 0;
     outline: 0;
   }
-
   .carousel::before,
   .carousel__prev {
     left: -1rem;
   }
-
   .carousel::after,
   .carousel__next {
     right: -1rem;
   }
-
   .carousel::before,
   .carousel::after {
     z-index: 1;
@@ -237,18 +220,33 @@ $nome = $nome[0];
     text-align: center;
     pointer-events: none;
   }
-
-  
+  .carousel::before {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+  }
+  .carousel::after {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+  }
   a {
-  text-decoration: none !important;
-}
+    text-decoration: none !important;
+  }
+  @media only screen and (max-width: 600px) {
+    body {
+      max-width: 90%;
+      height: 100vh;
+    }
+    .carousel__navigation{
+      display: none;
+    }
+    .carousel{
+      padding-top: 90vh;
+    }
+  }
 </style>
 </head>
-
 <body style="background-color: #DDA0DD;">
-<div style="padding-bottom: 5px;">
-      <a href="perfil.php" class="btn btn-secondary d-inline float-right" style="width: 75px;cursor: pointer;box-shadow: 0px 0px 2px gray;border: none;outline: none;padding: 5px;border-radius: 5px;background-color: white"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
-    </div>
+  <div style="padding-bottom: 5px;">
+    <a href="perfil.php" class="btn btn-secondary d-inline float-right" style="width: 75px;cursor: pointer;box-shadow: 0px 0px 2px gray;border: none;outline: none;padding: 5px;border-radius: 5px;background-color: white"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+  </div>
   <section class="carousel" aria-label="Gallery">
     <ol class="carousel__viewport">
       <li id="carousel__slide1" tabindex="0" class="carousel__slide">
@@ -270,13 +268,13 @@ $nome = $nome[0];
 
         </table>
         <div class="carousel__snapper">
-          
+
         </div>
       </li>
       <li id="carousel__slide2" tabindex="0" class="carousel__slide">
         <table style="text-align: left; padding: 3%">
           <thead>
-            <th style="text-align: center;"><img src="img/tipos-crise.png" style="height: 300px; width:650px;" alt=""></th>
+            <th style="text-align: center;"><img src="img/tipos-crise.png" style="height: 300px; width:70%;" alt=""></th>
           </thead>
           <tbody>
             <tr>
@@ -297,7 +295,7 @@ $nome = $nome[0];
 
         </table>
         <div class="carousel__snapper"></div>
-        
+
       </li>
       <li id="carousel__slide3" tabindex="0" class="carousel__slide">
         <table style="text-align: left; padding: 3%">
@@ -318,17 +316,17 @@ $nome = $nome[0];
 
                 É importante ressaltar que, em muitos casos, a causa da epilepsia permanece desconhecida.
                 Essa condição é chamada de epilepsia idiopática. Apesar dos avanços na medicina, os mecanismos subjacentes
-                à epilepsia idiopática ainda não foram totalmente elucidado.
+                à epilepsia idiopática ainda não foram totalmente elucidados.
               </td>
             </tr>
           </tbody>
 
         </table>
         <div class="carousel__snapper"></div>
-        
+
       </li>
       <li id="carousel__slide4" tabindex="0" class="carousel__slide">
-      <table style="text-align: left; padding: 3%">
+        <table style="text-align: left; padding: 3%">
           <thead>
             <th style="text-align: center;"><img src="img/misterios.png" style="height: 280px; width:150px;" alt=""></th>
           </thead>
@@ -338,37 +336,37 @@ $nome = $nome[0];
             </tr>
             <tr>
               <td style="padding: 2% 10% 0 10%;overflow:scroll">
-              Tudo começa com uma <b>conversa franca com o médico</b>, que busca entender seus sintomas, histórico de crises, 
-              histórico familiar e outros fatores relevantes. Um exame físico completo também é realizado para verificar 
-              se há sinais que possam indicar a causa das crises.<br>
-              O <b>eletroencefalograma (EEG)</b> é um exame crucial que registra a atividade elétrica do seu cérebro. 
-              Através de eletrodos no couro cabeludo, o EEG capta padrões de ondas cerebrais, revelando se há atividade anormal que possa estar relacionada à epilepsia.<br>
-              Em alguns casos, outros exames podem ser necessários para complementar o diagnóstico. <b>Exames de sangue</b> podem verificar distúrbios metabólicos que podem levar 
-              a convulsões, enquanto testes neuropsicológicos avaliam suas funções cognitivas.<br>
-              Em alguns casos, exames de imagem como <b>tomografia computadorizada (TC) e ressonância magnética (RM)</b> podem ser necessários.
-               Essas ferramentas fornecem imagens detalhadas do seu cérebro, permitindo a identificação de possíveis causas das crises, como tumores, lesões ou malformações vasculares.
+                Tudo começa com uma <b>conversa franca com o médico</b>, que busca entender seus sintomas, histórico de crises,
+                histórico familiar e outros fatores relevantes. Um exame físico completo também é realizado para verificar
+                se há sinais que possam indicar a causa das crises.<br>
+                O <b>eletroencefalograma (EEG)</b> é um exame crucial que registra a atividade elétrica do seu cérebro.
+                Através de eletrodos no couro cabeludo, o EEG capta padrões de ondas cerebrais, revelando se há atividade anormal que possa estar relacionada à epilepsia.<br>
+                Em alguns casos, outros exames podem ser necessários para complementar o diagnóstico. <b>Exames de sangue</b> podem verificar distúrbios metabólicos que podem levar
+                a convulsões, enquanto testes neuropsicológicos avaliam suas funções cognitivas.<br>
+                Em alguns casos, exames de imagem como <b>tomografia computadorizada (TC) e ressonância magnética (RM)</b> podem ser necessários.
+                Essas ferramentas fornecem imagens detalhadas do seu cérebro, permitindo a identificação de possíveis causas das crises, como tumores, lesões ou malformações vasculares.
               </td>
             </tr>
           </tbody>
 
         </table>
         <div class="carousel__snapper"></div>
-        
+
       </li>
     </ol>
     <aside class="carousel__navigation">
       <ol class="carousel__navigation-list">
         <li class="carousel__navigation-item">
-          <a href="#carousel__slide1" class="carousel__navigation-button" style="text-decoration: none; color:white;"></a>
+          <a href="#carousel__slide1" class="carousel__navigation-button" style="text-decoration: none; color:white;">1</a>
         </li>
         <li class="carousel__navigation-item">
-          <a href="#carousel__slide2" class="carousel__navigation-button" style="text-decoration: none; color:white"></a>
+          <a href="#carousel__slide2" class="carousel__navigation-button" style="text-decoration: none; color:white">2</a>
         </li>
         <li class="carousel__navigation-item">
-          <a href="#carousel__slide3" class="carousel__navigation-button" style="text-decoration: none; color:white"></a>
+          <a href="#carousel__slide3" class="carousel__navigation-button" style="text-decoration: none; color:white">3</a>
         </li>
         <li class="carousel__navigation-item">
-          <a href="#carousel__slide4" class="carousel__navigation-button" style="text-decoration: none; color:white"></a>
+          <a href="#carousel__slide4" class="carousel__navigation-button" style="text-decoration: none; color:white">4</a>
         </li>
       </ol>
     </aside>
