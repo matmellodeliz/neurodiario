@@ -5,6 +5,7 @@ $nome = $nome[0];
 ?>
 <!doctype html>
 <html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Perfil</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
@@ -55,12 +56,12 @@ $nome = $nome[0];
 
     <div class="col-sm-6">
         <div class="card">
-            <img src="img/<?= $_SESSION['avatar'] ?>.png" style="border-radius: 50%; min-height:150px; max-height:150px; margin-top:-15%; background-color: white; padding: 6px;">
+            <img src="<?= $_SESSION['avatar'] ?>" style="border-radius: 50%; min-height:150px; max-height:150px; max-width:150px; min-width: 150px; background-color: white; padding: 6px;">
             <br>
             <table style="height: 70px; width:100%">
                 <tbody>
                     <tr>
-                        <td><a href="#" class="btn btn-secondary d-inline float-left"><i class="fa-solid fa-user-gear"></i></a></td>
+                        <td><a href="configuracoes.php" class="btn btn-secondary d-inline float-left"><i class="fa-solid fa-user-gear"></i></a></td>
                         <td class="align-middle">
                             <h3></i><b><span class="d-inline" style="padding-left: 5%;">Bem vindo(a), <?= $nome ?>!</span></b></h3>
                         </td>

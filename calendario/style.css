@@ -49,7 +49,7 @@ a:active {
   color: #247BA0;
 }
 #weekdays div {
-  width: 100px;
+  width: 9vw;
   padding: 10px;
 }
 #calendar {
@@ -59,7 +59,7 @@ a:active {
   flex-wrap: wrap;
 }
 .day {
-  width: 100px;
+  width: 14vw;
   padding: 10px;
   height: 100px;
   cursor: pointer;
