@@ -67,7 +67,7 @@ $nome = $nome[0];
   body {
 
     max-width: 50%;
-    max-height: 20%;
+    max-height: 800px;
     margin: 0 auto;
     padding: 5% 1.25rem;
     font-family: 'Lato', sans-serif;
@@ -238,13 +238,7 @@ $nome = $nome[0];
     pointer-events: none;
   }
 
-  .carousel::before {
-    content: '<';
-  }
-
-  .carousel::after {
-    content: '>';
-  }
+  
   a {
   text-decoration: none !important;
 }
@@ -253,7 +247,7 @@ $nome = $nome[0];
 
 <body style="background-color: #DDA0DD;">
 <div style="padding-bottom: 5px;">
-      <a href="perfil.php" class="btn btn-secondary d-inline float-right" style="width: 75px;cursor: pointer;box-shadow: 0px 0px 2px gray;border: none;outline: none;padding: 5px;border-radius: 5px;"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+      <a href="perfil.php" class="btn btn-secondary d-inline float-right" style="width: 75px;cursor: pointer;box-shadow: 0px 0px 2px gray;border: none;outline: none;padding: 5px;border-radius: 5px;background-color: white"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
     </div>
   <section class="carousel" aria-label="Gallery">
     <ol class="carousel__viewport">
@@ -276,8 +270,7 @@ $nome = $nome[0];
 
         </table>
         <div class="carousel__snapper">
-          <a href="#carousel__slide4" class="carousel__prev">4</a>
-          <a href="#carousel__slide2" class="carousel__next"></a>
+          
         </div>
       </li>
       <li id="carousel__slide2" tabindex="0" class="carousel__slide">
@@ -304,8 +297,7 @@ $nome = $nome[0];
 
         </table>
         <div class="carousel__snapper"></div>
-        <a href="#carousel__slide1" class="carousel__prev"><span style="text-decoration: none;"></span></a>
-        <a href="#carousel__slide3" class="carousel__next"><span style="text-decoration: none;"></span></a>
+        
       </li>
       <li id="carousel__slide3" tabindex="0" class="carousel__slide">
         <table style="text-align: left; padding: 3%">
@@ -333,8 +325,7 @@ $nome = $nome[0];
 
         </table>
         <div class="carousel__snapper"></div>
-        <a href="#carousel__slide2" class="carousel__prev"><span style="text-decoration: none;"></span></a>
-        <a href="#carousel__slide4" class="carousel__next"><span style="text-decoration: none;"></span></a>
+        
       </li>
       <li id="carousel__slide4" tabindex="0" class="carousel__slide">
       <table style="text-align: left; padding: 3%">
@@ -362,8 +353,7 @@ $nome = $nome[0];
 
         </table>
         <div class="carousel__snapper"></div>
-        <a href="#carousel__slide3" class="carousel__prev"><span style="text-decoration: none;"></span></a>
-        <a href="#carousel__slide1" class="carousel__next"><span style="text-decoration: none;"></span></a>
+        
       </li>
     </ol>
     <aside class="carousel__navigation">

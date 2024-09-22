@@ -28,11 +28,11 @@ if (isset($_REQUEST['email']) && isset($_REQUEST['senha'])) {
       header("Location: perfil.php");
       exit();
     } else {
-      header("Location: index.php?error=Email ou senha errada.");
+      header("Location: index.php?error=y");
       exit();
     }
   } else {
-    header("Location: index.php?error=Email ou senha errada.");
+    header("Location: index.php?error=y");
     exit();
   }
 }

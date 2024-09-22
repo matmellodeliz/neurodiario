@@ -1,6 +1,3 @@
-<?php
-$nova_conta = isset($_GET['nova_conta']) ? $_GET['nova_conta'] : '';
-?>
 <!doctype html>
 <html>
 
@@ -23,7 +20,6 @@ $nova_conta = isset($_GET['nova_conta']) ? $_GET['nova_conta'] : '';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="This is a login page template based on Bootstrap 5">
     <title>Neuro Diário</title>
 </head>
 
@@ -38,11 +34,9 @@ $nova_conta = isset($_GET['nova_conta']) ? $_GET['nova_conta'] : '';
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                            <?php if ($nova_conta == 'sim') { ?>
-                                <div style="color:green;padding-bottom:10px">
-                                    Conta criada com sucesso!
-                                </div>
-                            <?php } ?>
+                                <?php if(isset($_GET['sucess'])){ 
+                                    echo '<div style="color:green;padding-bottom:10px">' . $_GET['sucess'] . '</div>';
+                                 } ?>
                             <?php if (isset($_GET['error'])) { ?>
                                 <div style="color:red;padding-bottom:10px">
                                     Email e/ou senha incorretos.
