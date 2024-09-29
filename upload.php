@@ -1,5 +1,5 @@
 <?php
-include 'connect_db.php';
+session_start();
 
 $sql = "SELECT avatar FROM usuarios WHERE id=" . $_SESSION['id'];
 $result = $conn->query($sql);

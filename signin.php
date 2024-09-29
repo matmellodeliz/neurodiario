@@ -1,6 +1,31 @@
 <?php
-include 'connect_db.php';
 
+require __DIR__ . '/vendor/autoload.php';
+
+use Kreait\Firebase\Factory;
+
+$existente = false;
+if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['senha'])) {
+	$factory = (new Factory())->withDatabaseUri('https://neurodiario-d655b-default-rtdb.firebaseio.com/');
+	$database = $factory->createDatabase();
+	$usuarios = $database->getReference('usuarios')->getSnapshot();
+	foreach ($usuarios->getValue() as $usuario) {
+		if($usuario['email'] == $_POST['email']){
+			$existente = true;
+			break;
+		}
+	}
+	if (!$existente) {
+		$id = uniqid();
+		$novoContato = [
+			'nome' => $_POST['nome'],
+			'email' => $_POST['email'],
+			'senha' => $_POST['senha'],
+			'avatar' => 'avatar'
+		];
+		$database->getReference('usuarios/' . $id)->set($novoContato);
+	}
+}
 ?>
 <!doctype html>
 <html>
@@ -12,7 +37,7 @@ include 'connect_db.php';
 	<script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Criar Conta</title>
 </head>
 <style>
@@ -44,14 +69,14 @@ include 'connect_db.php';
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
 							<h1 class="fs-4 card-title fw-bold mb-4">Registrar</h1>
-							<form method="POST" class="needs-validation" method="post" action="nova_conta.php" novalidate="" autocomplete="off">
+							<form method="POST" class="needs-validation" method="post" action="?" novalidate="" autocomplete="off">
 								<div class="mb-3">
-									<p style="color:red;"><?php if (isset($_SESSION['error'])) {
-																echo '' . $_SESSION['error'] . '';
-																unset($_SESSION['error']);
-															}  ?></p>
+									<?php
+									if ($existente) echo '<p style="color:red;">Este e-mail já está cadastrado.</p>';
+									elseif (isset($_POST['email']) && !$existente) echo '<p style="color:green;">Contra criada com sucesso</p>';
+									?>
 									<label class="mb-2 text-muted" for="nome">Nome</label>
-									<input id="nome" type="text" class="form-control" name="novo_nome" value="" autocomplete="off" required autofocus>
+									<input id="nome" type="text" class="form-control" name="nome" value="" autocomplete="off" required autofocus>
 								</div>
 
 								<div class="mb-3">
@@ -60,7 +85,7 @@ include 'connect_db.php';
 								</div>
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="senha">Senha</label>
-									<input id="senha" type="password" class="form-control" name="nova_senha" autocomplete="off" required>
+									<input id="senha" type="password" class="form-control" name="senha" autocomplete="off" required>
 									<div class="invalid-feedback">
 										Senha é necessária.
 									</div>
@@ -86,7 +111,7 @@ include 'connect_db.php';
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script>
+	<!-- <script>
 		function validarEmail() {
 			const nome = document.getElementById('nome').value;
 			const email = document.getElementById('email').value;
@@ -110,7 +135,7 @@ include 'connect_db.php';
 
 			return true;
 		}
-	</script>
+	</script> -->
 </body>
 
 </html>
