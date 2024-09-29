@@ -1,3 +1,4 @@
+
 let nav = 0;
 let clicked = null;
 let events = [];
@@ -9,7 +10,6 @@ $.ajax({
       events = data;
     }
 });
-
 
 const calendar = document.getElementById('calendar');
 const newEventModal = document.getElementById('newEventModal');
