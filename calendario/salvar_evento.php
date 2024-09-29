@@ -1,6 +1,6 @@
 <?php
-include '../connect_db.php';
-var_dump($_POST);
+session_start();
+
 $data_evento = $_POST['date'];
 $texto_evento = $_POST['title'];
 $id_usuario = $_SESSION['id'];

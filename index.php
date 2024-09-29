@@ -1,3 +1,8 @@
+<?php
+session_start();
+session_unset();
+?>
+
 <!doctype html>
 <html>
 
@@ -32,15 +37,14 @@
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                                <?php if(isset($_GET['sucess'])){ 
-                                    echo '<div style="color:green;padding-bottom:10px">' . $_GET['sucess'] . '</div>';
-                                 } ?>
-                            <?php if (isset($_GET['error'])) { ?>
+                            <?php if (isset($_GET['email']) && $_GET['email'] == 'error') { ?>
                                 <div style="color:red;padding-bottom:10px">
                                     Email e/ou senha incorretos.
                                 </div>
-                            <?php } ?>
-                            <form class="form-signin" method="post" action="perfil.php">
+                            <?php } 
+                            
+                            ?>
+                            <form class="form-signin" method="post" action="autenticar_usuario.php">
                                 <label for="email" class="sr-only">Endereço de email</label>
                                 <input type="text" id="email" name="email" class="form-control mb-3" placeholder="Seu email" required autofocus="">
                                 <label for="senha">Senha</label>

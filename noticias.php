@@ -1,7 +1,5 @@
 <?php
-include 'connect_db.php';
-$nome = explode(" ", $_SESSION['nome']);
-$nome = $nome[0];
+session_start();
 ?>
 <!doctype html>
 <html>

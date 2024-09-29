@@ -1,7 +1,4 @@
 <?php
-include 'connect_db.php';
-$nome = explode(" ", $_SESSION['nome']);
-$nome = $nome[0];
 ?>
 <!doctype html>
 <html>
@@ -65,7 +62,7 @@ $nome = $nome[0];
   }
 
   body {
-    max-width: 50%;
+    max-width: 60vw;
     max-height: 800px;
     margin: 0 auto;
     padding: 5% 1.25rem;
