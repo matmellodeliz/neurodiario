@@ -1,33 +1,11 @@
 <?php
+session_start();
 
-// require __DIR__ . '/vendor/autoload.php';
+$conn = mysqli_connect("45.152.44.154", "u153410287_mateus", "7Ux3fWa+", "u153410287_mateus");
+if (!$conn) {
 
-// use Kreait\Firebase\Factory;
-
-// $factory = (new Factory())->withDatabaseUri('https://neurodiario-d655b-default-rtdb.firebaseio.com/');
-// $database = $factory->createDatabase();
-// $usuarios = $database->getReference('usuarios')->getSnapshot();
-// foreach ($usuarios->getValue() as $index => $usuario) {
-//   if ($_POST['email'] == $usuario['email']) {
-//     session_start();
-//     $_SESSION['id'] = $index;
-//     $_SESSION['nome'] = $usuario['nome'];
-//     $_SESSION['email'] = $usuario['email'];
-//     $_SESSION['senha'] = $usuario['senha'];
-//     $_SESSION['avatar'] = $usuario['avatar'];
-//     header('Location: perfil.php');
-//     exit();
-//   }
-// }
-
-// header('Location: index.php?email=error');
-// exit();
-
-
-
-
-
-include 'connect_db.php';
+  echo "Connection failed!";
+}
 
 if (isset($_REQUEST['email']) && isset($_REQUEST['senha'])) {
   $email = $_REQUEST['email'];

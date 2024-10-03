@@ -1,5 +1,4 @@
 <?php
-session_start();
 session_unset();
 ?>
 
@@ -37,7 +36,7 @@ session_unset();
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
                             <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                            <?php if (isset($_GET['email']) && $_GET['email'] == 'error') { ?>
+                            <?php if (isset($_GET['error']) && $_GET['error'] == 'y') { ?>
                                 <div style="color:red;padding-bottom:10px">
                                     Email e/ou senha incorretos.
                                 </div>

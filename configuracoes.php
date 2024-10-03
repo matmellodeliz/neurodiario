@@ -1,5 +1,7 @@
 <?php
-session_start();
+include 'connect_db.php';
+$erroEnvio = '';
+if (isset($_GET['erroEnvio']) && $_GET['erroEnvio'] == 'y') $erroEnvio =  "<script>alert('Erro no envio. Você está mandando uma imagem? Se sim, cuidado com o tamanho.');</script>";
 ?>
 
 <!doctype html>
@@ -7,7 +9,8 @@ session_start();
 <title>Perfil</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Configurações</title>
 
 <style>
@@ -52,6 +55,10 @@ session_start();
         opacity: 0.7;
     }
 </style>
+<?php
+echo $erroEnvio;
+$_GET['erroEnvio'] = '';
+?>
 </head>
 
 <body style="background-color: #DDA0DD;">
@@ -60,20 +67,20 @@ session_start();
         <div class="card">
             <img src="<?= $_SESSION['avatar'] ?>" id="profilePreview" style="border-radius: 50%; min-height:150px; max-height:150px; max-width:150px; min-width: 150px; margin-top:-15%; background-color: white; padding: 6px;">
             <br>
-            
-                <div class="container">
-                    <div class="row" style="padding-bottom: 1px;">
-                        <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
-                            <label class="button" for="profileImage"><i class="fa-solid fa-id-badge fa-xl mr-4 col-sm-6" style="color: #525252; float:left; padding:10px 0 10px 8px"></i>Trocar foto de perfil?</label><br>
-                            <input type="file" id="profileImage" name="profileImage" hidden accept="image/*"><br>
-                            <button class="button" type="submit"><i class="fa-solid fa-check fa-xl mr-4 col-sm-6" style="color: #525252; float:left; padding:10px 0 10px 8px"></i>Salvar</button>
-                        </form>
 
-                        
-                    </div>
-                
-                <a href="perfil.php" class="button"><i class="fa-solid fa-arrow-left fa-xl mr-4 col-sm-6"  style="color: #525252; float:left; padding:10px 0 10px 8px"></i> Voltar</a>
+            <div class="container">
+                <div class="row" style="padding-bottom: 1px;">
+                    <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
+                        <label class="button" for="profileImage"><i class="fa-solid fa-id-badge fa-xl mr-4 col-sm-6" style="color: #525252; float:left; padding:10px 0 10px 8px"></i>Trocar foto de perfil?</label><br>
+                        <input type="file" id="profileImage" name="profileImage" hidden accept="image/*"><br>
+                        <button class="button" type="submit"><i class="fa-solid fa-check fa-xl mr-4 col-sm-6" style="color: #525252; float:left; padding:10px 0 10px 8px"></i>Salvar</button>
+                    </form>
+
+
                 </div>
+
+                <a href="perfil.php" class="button"><i class="fa-solid fa-arrow-left fa-xl mr-4 col-sm-6" style="color: #525252; float:left; padding:10px 0 10px 8px"></i> Voltar</a>
+            </div>
         </div>
     </div>
 </body>

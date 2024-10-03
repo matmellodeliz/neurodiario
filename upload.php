@@ -1,7 +1,8 @@
 <?php
-session_start();
+include 'connect_db.php';
 
 $sql = "SELECT avatar FROM usuarios WHERE id=" . $_SESSION['id'];
+
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
@@ -20,34 +21,29 @@ if ($result->num_rows > 0) {
         $check = getimagesize($file['tmp_name']);
         
         if ($check !== false) {
-            echo "O arquivo é uma imagem - " . $check['mime'] . ".";
             $uploadOk = 1;
         } else {
-            echo "O arquivo não é uma imagem.";
             $uploadOk = 0;
         }
 
         // Verifica se o arquivo já existe
         if (file_exists($targetFile)) {
-            echo "Desculpe, o arquivo já existe.";
             $uploadOk = 0;
         }
 
         // Verifica o tamanho do arquivo (opcional, exemplo: 1MB)
         if ($file['size'] > 1000000) {
-            echo "Desculpe, o seu arquivo é muito grande.";
             $uploadOk = 0;
         }
 
         // Permite apenas certos formatos de arquivo (opcional)
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-            echo "Desculpe, apenas arquivos JPG, JPEG, PNG e GIF são permitidos.";
             $uploadOk = 0;
         }
 
         // Verifica se `$uploadOk` está definido como 0 por algum erro
         if ($uploadOk == 0) {
-            echo "Desculpe, o seu arquivo não foi enviado.";
+            header("Location: configuracoes.php?erroEnvio=y");
         } else {
             if (file_exists($imagemAtual)) {
                 unlink($imagemAtual);
