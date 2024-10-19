@@ -8,4 +8,4 @@ notícias e conteúdos educativos, para fortalecer a comunidade e melhorar a qua
 vida dos indivíduos com epilepsia.
 
 O link para o site do projeto: 
-[Neurodiário](tinyurl.com/neurodiario)
+(tinyurl.com/neurodiario "Neurodiário")
