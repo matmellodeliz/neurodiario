@@ -5,7 +5,7 @@ session_start();
 <html>
 
 <head>
-  
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -31,17 +31,9 @@ session_start();
       </div>
     </div>
 
-    <div id="weekdays" style="background-color:white;border-bottom: 1px solid black">
-      <div>Dom</div>
-      <div>Seg</div>
-      <div>Ter</div>
-      <div>Qua</div>
-      <div>Qui</div>
-      <div>Sex</div>
-      <div>Sáb</div>
-    </div>
+    <div id="calendar">
 
-    <div id="calendar"></div>
+    </div>
   </div>
 
   <div id="newEventModal">

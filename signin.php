@@ -12,9 +12,16 @@ include 'connect_db.php';
 	<script src="https://kit.fontawesome.com/bf55efcdc5.js" crossorigin="anonymous"></script>
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <style>
+	@media only screen and (max-width: 600px) {
+		section {
+			height: 100vh !important;
+		}
+	}
+
 	.error {
 
 		background: #F2DEDE;
@@ -30,33 +37,43 @@ include 'connect_db.php';
 		margin: 20px auto;
 
 	}
+    .logo{
+        width: 250px;
+    }
+    @media only screen and (max-width: 600px) {
+        .logo{
+        width: 200px;
+        }
+    }
 </style>
-
 <body>
-	<section class="h-100">
+	<section>
 		<div class="container h-100">
 			<div class="row justify-content-sm-center h-100">
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-					<div class="text-center my-3">
-						<img src="img/logo.png" alt="logo" width="250">
+					<div class="text-center">
+						<img src="img/logo.png" alt="logo" class="logo">
 					</div>
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
-							<h1 class="fs-4 card-title fw-bold mb-4">Registrar</h1>
-							<form method="POST" class="needs-validation" method="post"   action="nova_conta.php" novalidate="" autocomplete="off">
-								<div class="mb-3">
-								<p style="color:red;"><?php if(isset($_SESSION['error'])){
-									echo ''.$_SESSION['error'].'';
-									unset($_SESSION['error']);
-								}  ?></p>
+							<h4 class="fs-4 card-title fw-bold">Registrar</h4>
+							<form method="POST" class="needs-validation" method="post" action="nova_conta.php" novalidate="" autocomplete="off">
+								<div>
+									<p style="color:red;"><?php if (isset($_GET['error'])) {
+																if ($_GET['error'] == 'nome') echo 'O nome de usuário deve ter pelo menos 3 caracteres.';
+																if ($_GET['error'] == 'email') echo 'Por favor, insira um email válido.';
+																if ($_GET['error'] == 'senha') echo 'A senha deve ter pelo menos 6 caracteres.';
+																if ($_GET['error'] == 'ja_registrado') echo 'Email já registrado.';
+																$_GET['error'] = '';
+															}  ?></p>
 									<label class="mb-2 text-muted" for="nome">Nome</label>
 									<input id="nome" type="text" class="form-control" name="novo_nome" value="" autocomplete="off" required autofocus>
 								</div>
 
 								<div class="mb-3">
 									<label class="mb-2 text-muted" for="email">Email</label>
-									<input id="email" type="email" class="form-control" name="email" autocomplete="off" value="" required >
-									
+									<input id="email" type="email" class="form-control" name="email" autocomplete="off" value="" required>
+
 
 								</div>
 
@@ -68,11 +85,7 @@ include 'connect_db.php';
 									</div>
 								</div>
 
-								<div class="align-items-center d-flex">
-									<button type="submit" class="btn btn-primary ms-auto">
-										Registrar
-									</button>
-								</div>
+								<button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
 							</form>
 						</div>
 						<div class="card-footer py-3 border-0">

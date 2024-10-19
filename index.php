@@ -1,5 +1,11 @@
 <?php
-session_unset();
+session_start();
+if(isset($_GET['sair']) && $_GET['sair'] == 'y'){
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+
 ?>
 
 <!doctype html>
@@ -15,7 +21,16 @@ session_unset();
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Login</title>
 </head>
-
+<style>
+    .logo{
+        width: 250px;
+    }
+    @media only screen and (max-width: 600px) {
+        .logo{
+        width: 200px;
+        }
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,19 +46,22 @@ session_unset();
             <div class="row justify-content-center h-100">
                 <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
                     <div class="text-center my-3">
-                        <img src="img/logo.png" alt="logo" width="250">
+                        <img src="img/logo.png" alt="logo" class="logo">
                     </div>
                     <div class="card shadow-lg">
                         <div class="card-body p-5">
-                            <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+                            <h4 class="fs-4 card-title fw-bold mb-4">Login</h4>
                             <?php if (isset($_GET['error']) && $_GET['error'] == 'y') { ?>
                                 <div style="color:red;padding-bottom:10px">
                                     Email e/ou senha incorretos.
                                 </div>
                             <?php } 
-                            
-                            ?>
-                            <form class="form-signin" method="post" action="autenticar_usuario.php">
+                            elseif (isset($_GET['sucess']) && $_GET['sucess'] == 'y') { ?>
+                                <div style="color:green;padding-bottom:10px">
+                                    Conta criada com sucesso.
+                                </div>
+                            <?php } ?>
+                            <form class="form-signin" method="post" action="connect_db.php">
                                 <label for="email" class="sr-only">Endereço de email</label>
                                 <input type="text" id="email" name="email" class="form-control mb-3" placeholder="Seu email" required autofocus="">
                                 <label for="senha">Senha</label>

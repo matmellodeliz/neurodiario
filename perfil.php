@@ -1,7 +1,9 @@
 <?php
 include 'connect_db.php';
+
 $nome = explode(" ", $_SESSION['nome']);
 $nome = $nome[0];
+
 ?>
 <!doctype html>
 <html>
@@ -58,8 +60,8 @@ $nome = $nome[0];
 
     <div class="col-sm-6">
         <div class="card">
-        <img src="<?= $_SESSION['avatar'] ?>" id="profilePreview" style="border-radius: 50%; min-height:150px; max-height:150px; max-width:150px; min-width: 150px; margin-top:-15%; background-color: white; padding: 6px;">
-        <br>
+            <img src="<?= $_SESSION['avatar'] ?>" id="profilePreview" style="border-radius: 50%; min-height:150px; max-height:150px; max-width:150px; min-width: 150px; margin-top:-15%; background-color: white; padding: 6px;">
+            <br>
             <table style="height: 70px; width:100%">
                 <tbody>
                     <tr>
@@ -67,7 +69,7 @@ $nome = $nome[0];
                         <td class="align-middle">
                             <h3></i><b><span class="d-inline" style="padding-left: 5%;">Bem vindo(a), <?= $nome ?>!</span></b></h3>
                         </td>
-                        <td><a href="index.php" class="btn btn-secondary d-inline float-right"><i class="fa-solid fa-right-from-bracket"></i></a></td>
+                        <td><a href="index.php?sair=y" class="btn btn-secondary d-inline float-right"><i class="fa-solid fa-right-from-bracket"></i></a></td>
                     </tr>
                 </tbody>
             </table>
