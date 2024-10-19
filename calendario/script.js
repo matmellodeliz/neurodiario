@@ -16,7 +16,7 @@ const newEventModal = document.getElementById('newEventModal');
 const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
-const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const diaSemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
 function openModal(date) {
   clicked = date;
@@ -44,47 +44,38 @@ function load() {
   const month = dt.getMonth();
   const year = dt.getFullYear();
 
-  const firstDayOfMonth = new Date(year, month, 1);
+  const primeiroDiaDoMes = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
-  const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  });
-  const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+  console.log();
+
 
   document.getElementById('monthDisplay').innerText = 
     `${dt.toLocaleDateString('pt-br', { month: 'long' })} ${year}`;
-
+  let j = dt.getDay();
   calendar.innerHTML = '';
-
-  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+  for(let i = 1, j = primeiroDiaDoMes.getDay();i <= daysInMonth; i++, j++) {
+    if(j == 7) j = 0;
     const daySquare = document.createElement('div');
     daySquare.classList.add('day');
 
-    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+    const dayString = `${month + 1}/${i}/${year}`;
+    
+    daySquare.innerText = i + ' - ' + diaSemana[j];
+    const eventForDay = events.find(e => e.date === dayString);
 
-    if (i > paddingDays) {
-      daySquare.innerText = i - paddingDays;
-      const eventForDay = events.find(e => e.date === dayString);
-
-      if (i - paddingDays === day && nav === 0) {
-        daySquare.id = 'currentDay';
-      }
-
-      if (eventForDay) {
-        const eventDiv = document.createElement('div');
-        eventDiv.classList.add('event');
-        eventDiv.innerText = eventForDay.title;
-        daySquare.appendChild(eventDiv);
-      }
-
-      daySquare.addEventListener('click', () => openModal(dayString));
-    } else {
-      daySquare.classList.add('padding');
+    if (i === day && nav === 0) {
+      daySquare.id = 'currentDay';
     }
+
+    if (eventForDay) {
+      const eventDiv = document.createElement('div');
+      eventDiv.classList.add('event');
+      eventDiv.innerText = eventForDay.title;
+      daySquare.appendChild(eventDiv);
+    }
+
+    daySquare.addEventListener('click', () => openModal(dayString));
+    
 
     calendar.appendChild(daySquare);    
   }

@@ -38,23 +38,13 @@ a:active {
   justify-content: space-between;
 }
 #header button {
-  background-color:#92a1d1;
+  background-color: #92a1d1;
 }
 #container {
   width: 1400px;
   margin: 0 auto;
 }
-#weekdays {
-  width: 100%;
-  display: flex;
-  color: #247BA0;
-}
-#weekdays div {
-  width: 100%;
-  padding: 10px;
-}
 #calendar {
-  width: 100%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +57,7 @@ a:active {
   box-sizing: border-box;
   background-color: white;
   margin: 5px;
-  box-shadow: 0px 0px 3px #CBD4C2;
+  box-shadow: 0px 0px 3px #cbd4c2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -77,7 +67,7 @@ a:active {
 }
 
 .day + #currentDay {
-  background-color:#e8f4fa;
+  background-color: #e8f4fa;
 }
 .event {
   font-size: 15px;
@@ -90,10 +80,12 @@ a:active {
 }
 .padding {
   cursor: default !important;
-  background-color: #FFFCFF !important;
+  background-color: #fffcff !important;
   box-shadow: none !important;
+  display: none;
 }
-#newEventModal, #deleteEventModal {
+#newEventModal,
+#deleteEventModal {
   display: none;
   z-index: 20;
   padding: 25px;
@@ -119,39 +111,60 @@ a:active {
 #eventTitleInput.error {
   border: 2px solid red;
 }
-#cancelButton, #deleteButton {
+#cancelButton,
+#deleteButton {
   background-color: #d36c6c;
 }
-#saveButton, #closeButton {
+#saveButton,
+#closeButton {
   background-color: #92a1d1;
 }
 #eventText {
   font-size: 14px;
 }
 button:hover,
-    a:hover {
-        opacity: 0.7;
-    }
+a:hover {
+  opacity: 0.7;
+}
+
+@media only screen and (max-width: 1420px) {
+  .day {
+    width: 15vw;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .day {
+    width: 23vw;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .day {
+    width: 18vw;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .day {
+    width: 28vw;
+  }
+}
 @media only screen and (max-width: 600px) {
-  #newEventModal, #deleteEventModal {
+  #newEventModal,
+  #deleteEventModal {
     display: none;
     z-index: 20;
     border-radius: 5px;
-    width: 80vw;
-    margin:auto;
+    width: 40vw;
+    margin: auto;
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     font-family: sans-serif;
   }
-  #weekdays {
-    display: none;
-  }
   .day {
-    width: 25vw;
+    width: 45vw;
   }
   .event {
-    font-size: 12px
+    font-size: 12px;
   }
 }
