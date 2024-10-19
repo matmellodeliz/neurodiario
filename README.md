@@ -9,4 +9,4 @@ vida dos indivíduos com epilepsia.
 
 O link para o site do projeto: 
 
-[Google](https://www.google.com)
+[Neurodiário](https://tinyurl.com/neurodiario)
