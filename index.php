@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'connect_db.php';
 if(isset($_GET['sair']) && $_GET['sair'] == 'y'){
     session_destroy();
     header("Location: index.php");

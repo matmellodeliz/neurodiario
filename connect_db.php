@@ -7,7 +7,10 @@ if (!$conn) {
   header("Location: index.php");
   exit;
 }
-
+$sql = "INSERT INTO contador_paginas (nome_pagina, contador)
+VALUES ('".$_SERVER['PHP_SELF']."', 1)
+ON DUPLICATE KEY UPDATE contador = contador + 1";
+mysqli_query($conn, $sql);
 
 if (isset($_REQUEST['email']) && isset($_REQUEST['senha'])) {
   $email = mysqli_real_escape_string($conn,$_REQUEST['email']);
@@ -37,7 +40,7 @@ if (isset($_REQUEST['email']) && isset($_REQUEST['senha'])) {
     exit();
   }
 }
-if (!isset($_SESSION['id']) && !in_array($_SERVER['PHP_SELF'], ['/neurodiario/nova_conta.php', '/neurodiario/signin.php', '/mateus/neurodiario/nova_conta.php', '/mateus/neurodiario/signin.php'])) {
+if (!isset($_SESSION['id']) && !in_array($_SERVER['PHP_SELF'], ['/neurodiario/nova_conta.php', '/neurodiario/signin.php', '/neurodiario/index.php', '/mateus/neurodiario/nova_conta.php', '/mateus/neurodiario/signin.php', '/mateus/neurodiario/index.php'])) {
   header('Location: index.php');
   exit();
 }
