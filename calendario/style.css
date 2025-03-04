@@ -168,3 +168,27 @@ a:hover {
     font-size: 12px;
   }
 }
+
+.background-color {
+  background-color: #DDA0DD;
+}
+
+.header-button {
+  padding-bottom: 5px;
+}
+
+.back-button {
+  width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: white;
+}
+
+.month-display {
+  color: black;
+}

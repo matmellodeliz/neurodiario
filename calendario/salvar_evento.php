@@ -1,32 +1,18 @@
 <?php
-// session_start();
-
-// require __DIR__ . '../../vendor/autoload.php';
-
-// use Kreait\Firebase\Factory;
-
-// $factory = (new Factory())->withDatabaseUri('https://neurodiario-d655b-default-rtdb.firebaseio.com/');
-// $database = $factory->createDatabase();
-// $eventos = $database->getReference('eventos/' . $_SESSION['id'])->getSnapshot();
-// $proximoId = 0;
-// foreach ($eventos->getValue() as $index => $evento) {
-//     $proximoId = intval($index) + 1;
-// }
-// $novoEvento = [
-//   'data_evento' => $_POST['date'],
-//   'texto_evento' => $_POST['title']
-// ];
-// $database->getReference('eventos/' . $_SESSION['id'] . '/' . $proximoId)->set($novoEvento);
-
 include '../connect_db.php';
 
-$query = "INSERT INTO eventos (id_usuario, data_evento, texto_evento) VALUES (" . $_SESSION['id'] . ",'" . $_POST['date'] . "','" .  $_POST['title'] . "')";
+// Prepare the SQL statement
+$query = $conn->prepare("INSERT INTO eventos (id_usuario, data_evento, texto_evento) VALUES (?, ?, ?)");
+$query->bind_param("iss", $_SESSION['id'], $_POST['date'], $_POST['title']);
 
-$resultado = mysqli_query($conn, $query);
-
-if ($resultado === FALSE) {
-    echo "Erro na inserção: " . mysqli_error($conn);
-  } else {
-    // Consulta bem-sucedida, processe o resultado
+// Execute the statement
+if ($query->execute()) {
     echo "Inserção executada com sucesso!";
-  }
+} else {
+    echo "Erro na inserção: " . $query->error;
+}
+
+// Close the statement
+$query->close();
+$conn->close();
+?>
