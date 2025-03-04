@@ -1,42 +1,22 @@
 <?php
 include 'connect_db.php';
-if(isset($_GET['sair']) && $_GET['sair'] == 'y'){
+if (isset($_GET['sair']) && $_GET['sair'] == 'y') {
     session_destroy();
     header("Location: index.php");
     exit();
 }
-
 ?>
 
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Login</title>
-</head>
-<style>
-    .logo{
-        width: 250px;
-    }
-    @media only screen and (max-width: 600px) {
-        .logo{
-        width: 200px;
-        }
-    }
-</style>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css"> <!-- Moved inline CSS to styles.css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neuro Diário</title>
 </head>
 
@@ -55,8 +35,7 @@ if(isset($_GET['sair']) && $_GET['sair'] == 'y'){
                                 <div style="color:red;padding-bottom:10px">
                                     Email e/ou senha incorretos.
                                 </div>
-                            <?php } 
-                            elseif (isset($_GET['sucess']) && $_GET['sucess'] == 'y') { ?>
+                            <?php } elseif (isset($_GET['sucess']) && $_GET['sucess'] == 'y') { ?>
                                 <div style="color:green;padding-bottom:10px">
                                     Conta criada com sucesso.
                                 </div>

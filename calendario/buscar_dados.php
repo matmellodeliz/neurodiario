@@ -1,36 +1,32 @@
 <?php
-// session_start();
-// require __DIR__ . '../../vendor/autoload.php';
+include '../connect_db.php';
 
-// use Kreait\Firebase\Factory;
+// Verifica se a sessão foi iniciada
+if (!isset($_SESSION)) {
+    session_start();
+}
 
-// try {
-//   $factory = (new Factory())->withDatabaseUri('https://neurodiario-d655b-default-rtdb.firebaseio.com/');
-//   $database = $factory->createDatabase();
-//   $eventos = $database->getReference('eventos/' . $_SESSION['id'])->getSnapshot();
-//   $dados = [];
-//   foreach ($eventos->getValue() as $index => $evento) {
-//     if($evento != null){
-//       $dados[] = [
-//         'date' => $evento['data_evento'], // data formato mes/dia/ano
-//         'title' => $evento['texto_evento']
-//       ];
-//     }
-    
-//   }
+// Verifica se o id do usuário está definido na sessão
+if (!isset($_SESSION['id'])) {
+    echo json_encode(['error' => 'Usuário não autenticado']);
+    exit;
+}
 
-  include '../connect_db.php';
-  $query = "SELECT data_evento as date, texto_evento as title FROM eventos WHERE id_usuario = " . $_SESSION['id'];
-  $resultado = mysqli_query($conn, $query);
+// Prepara a consulta para evitar SQL Injection
+$query = "SELECT data_evento as date, texto_evento as title FROM eventos WHERE id_usuario = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $_SESSION['id']);
+$stmt->execute();
+$resultado = $stmt->get_result();
 
-  $dados = [];
-  while ($linha = mysqli_fetch_assoc($resultado)) {
+$dados = [];
+while ($linha = $resultado->fetch_assoc()) {
     $dados[] = $linha;
-  }
-  echo json_encode($dados);
+}
 
+echo json_encode($dados);
 
-// } catch (Exception $e) {
-  // Tratar exceção, por exemplo, retornar uma mensagem de erro em JSON
-  // echo json_encode(['error' => $e->getMessage()]);
-// }
+// Fecha a conexão
+$stmt->close();
+$conn->close();
+?>

@@ -2,46 +2,45 @@
 include 'connect_db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $senha_atual = trim($_POST['senha_atual']);
-    $nova_senha = trim($_POST['nova_senha']);
-    $hashed_nova_senha = password_hash($nova_senha, PASSWORD_DEFAULT);
+    $senha_atual = $_POST['senha_atual'];
+    $nova_senha = $_POST['nova_senha'];
 
-    // Validações do lado do servidor
+    // Verifique se a nova senha tem pelo menos 6 caracteres
     if (strlen($nova_senha) < 6) {
-        header("Location: configuracoes.php?error=nova_senha");
+        header('Location: configuracoes.php?error=nova_senha');
         exit();
     }
 
-    if ($conn->connect_error) {
-        die("Erro de conexão: " . $conn->connect_error);
+    // Obtenha a senha atual do banco de dados
+    $user_id = $_SESSION['id'];
+    $query = "SELECT senha FROM usuarios WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    if (!$stmt) {
+        die('Prepare failed: ' . $conn->error);
     }
-
-    // Verifica se a senha atual está correta
-    $sql = "SELECT senha FROM usuarios WHERE id='" . $_SESSION['id'] . "'";
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        $senha_hashed = $row['senha'];
-
-        if (password_verify($senha, $senha_hashed)) {
-            $_SESSION['error'] = "Senha atual incorreta.";
-            header("Location: configuracoes.php?error=senha_atual");
-            exit();
-        }
-    }
-    // Inserir o novo usuário no banco de dados
-    $stmt = $conn->prepare("UPDATE usuarios SET senha = ? WHERE id = ?");
-    $stmt->bind_param("ss", $hashed_nova_senha, $_SESSION['id']);
-
-    if ($stmt->execute()) {
-        header("Location: configuracoes.php?sucess=y");
-    } else {
-        $_SESSION['error'] = "Falha na troca de senha.";
-        header("Location: configuracoes.php");
-        exit();
-    }
-
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $stmt->bind_result($senha_hash);
+    $stmt->fetch();
     $stmt->close();
-    $conn->close();
+    // Verifique se a senha atual está correta
+    if (!password_verify($senha_atual, $senha_hash)) {
+        header('Location: configuracoes.php?error=senha_atual');
+        exit();
+    }
+
+    // Atualize a senha no banco de dados
+    $nova_senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
+    $query = "UPDATE usuarios SET senha = ? WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    if (!$stmt) {
+        die('Prepare failed: ' . $conn->error);
+    }
+    $stmt->bind_param('si', $nova_senha_hash, $user_id);
+    $stmt->execute();
+    $stmt->close();
+
+    header('Location: configuracoes.php?sucess=y');
+    exit();
 }
+?>

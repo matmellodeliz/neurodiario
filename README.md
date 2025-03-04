@@ -6,6 +6,3 @@ familiares e profissionais da saúde. A plataforma visa criar um espaço virtual
 informações, suporte e conhecimento sobre a doença. Oferecendo um calendário pessoal,
 notícias e conteúdos educativos, para fortalecer a comunidade e melhorar a qualidade de
 vida dos indivíduos com epilepsia.
-
-O link para o site do projeto: 
-[Neurodiário](https://tinyurl.com/neurodiario)

@@ -1,60 +1,43 @@
 <?php
-
-// require __DIR__ . '/vendor/autoload.php';
-
-// use Kreait\Firebase\Factory;
-
-// $factory = (new Factory())->withDatabaseUri('https://neurodiario-d655b-default-rtdb.firebaseio.com/');
-// $database = $factory->createDatabase();
-// $usuarios = $database->getReference('usuarios')->getSnapshot();
-// foreach ($usuarios->getValue() as $index => $usuario) {
-//   if ($_POST['email'] == $usuario['email']) {
-//     session_start();
-//     $_SESSION['id'] = $index;
-//     $_SESSION['nome'] = $usuario['nome'];
-//     $_SESSION['email'] = $usuario['email'];
-//     $_SESSION['senha'] = $usuario['senha'];
-//     $_SESSION['avatar'] = $usuario['avatar'];
-//     header('Location: perfil.php');
-//     exit();
-//   }
-// }
-
-// header('Location: index.php?email=error');
-// exit();
-
-
-
-
-
+session_start();
 include 'connect_db.php';
 
-if (isset($_REQUEST['email']) && isset($_REQUEST['senha'])) {
-  $email = $_REQUEST['email'];
-  $senha = $_REQUEST['senha'];
-  $sql = "SELECT * FROM usuarios WHERE email='" . $email . "' AND senha='" . $senha . "'";
+if (isset($_POST['email']) && isset($_POST['senha'])) {
+  $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+  $senha = $_POST['senha'];
 
-  $result = mysqli_query($conn, $sql);
-  
-  if (mysqli_num_rows($result) === 1) {
+  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $sql = "SELECT * FROM usuarios WHERE email = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    $row = mysqli_fetch_assoc($result);
+    if (mysqli_num_rows($result) === 1) {
+      $row = mysqli_fetch_assoc($result);
 
-    if ($row['email'] === $email && $row['senha'] === $senha) {
-      $_SESSION['id'] = $row['id'];
-      $_SESSION['nome'] = $row['nome'];
-      $_SESSION['email'] = $row['email'];
-      $_SESSION['senha'] = $row['senha'];
-      $_SESSION['avatar'] = $row['avatar'];
+      if (password_verify($senha, $row['senha'])) {
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['nome'] = $row['nome'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['avatar'] = $row['avatar'];
 
-      header("Location: perfil.php");
-      exit();
+        header("Location: perfil.php");
+        exit();
+      } else {
+        header("Location: index.php?error=y");
+        exit();
+      }
     } else {
       header("Location: index.php?error=y");
       exit();
     }
   } else {
-    header("Location: index.php?error=y");
+    header("Location: index.php?error=invalid_email");
     exit();
   }
+} else {
+  header("Location: index.php?error=missing_data");
+  exit();
 }
+?>

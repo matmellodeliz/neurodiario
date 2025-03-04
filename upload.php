@@ -1,7 +1,15 @@
 <?php
+session_start();
 include 'connect_db.php';
 
-$sql = "SELECT avatar FROM usuarios WHERE id=" . $_SESSION['id'];
+// Verifica se o usuário está logado
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$id = intval($_SESSION['id']);
+$sql = "SELECT avatar FROM usuarios WHERE id=$id";
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -14,12 +22,14 @@ if ($result->num_rows > 0) {
         $targetFile = $targetDirectory . time() . '_' . $fileName; // Adiciona timestamp ao nome do arquivo para evitar duplicidade
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-        if(empty($file['tmp_name'])) { 
+        
+        if (empty($file['tmp_name'])) { 
             header("Location: configuracoes.php");
+            exit();
         }
+
         // Verifica se o arquivo é realmente uma imagem
         $check = getimagesize($file['tmp_name']);
-        
         if ($check !== false) {
             $uploadOk = 1;
         } else {
@@ -37,27 +47,37 @@ if ($result->num_rows > 0) {
         }
 
         // Permite apenas certos formatos de arquivo (opcional)
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        $allowedFileTypes = ['jpg', 'png', 'jpeg', 'gif'];
+        if (!in_array($imageFileType, $allowedFileTypes)) {
             $uploadOk = 0;
         }
 
         // Verifica se `$uploadOk` está definido como 0 por algum erro
         if ($uploadOk == 0) {
             header("Location: configuracoes.php?erroEnvio=y");
+            exit();
         } else {
             if (file_exists($imagemAtual)) {
                 unlink($imagemAtual);
             }
-            $sql = "UPDATE usuarios SET avatar='$targetFile' WHERE id=" . $_SESSION['id'];
-            $conn->query($sql) or die(''. $conn->error);
-            // Se estiver tudo certo, tenta fazer o upload do arquivo
-            if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-                $_SESSION['avatar'] = $targetFile;
-                header("Location: perfil.php");
+            $sql = "UPDATE usuarios SET avatar='$targetFile' WHERE id=$id";
+            if ($conn->query($sql) === TRUE) {
+                // Se estiver tudo certo, tenta fazer o upload do arquivo
+                if (move_uploaded_file($file['tmp_name'], $targetFile)) {
+                    $_SESSION['avatar'] = $targetFile;
+                    header("Location: perfil.php");
+                    exit();
+                } else {
+                    echo "Desculpe, ocorreu um erro ao enviar o seu arquivo.";
+                    header("Location: configuracoes.php");
+                    exit();
+                }
             } else {
-                echo "Desculpe, ocorreu um erro ao enviar o seu arquivo.";
-                header("Location: configuracoes.php");
+                echo "Erro ao atualizar o avatar: " . $conn->error;
             }
         }
     }
+} else {
+    echo "Usuário não encontrado.";
 }
+?>
